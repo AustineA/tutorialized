@@ -1,0 +1,50 @@
+
+  author = true if current_user == course.user
+  purchased = if current_user && current_user.orders.where(course_id: course.id, user_id: current_user.id, status: true).exists? || author
+    true
+  else
+    false
+  end
+
+  l = course.lessons.map do |lesson|
+      v = if purchased 
+        lesson.video.url
+      end
+      {
+        title: lesson.title,
+        video: v,
+        cover: lesson.cover.url,
+        thumbnail: lesson.cover_url(:thumb),
+        locked: !purchased,
+      }
+  end
+
+  price = if @country == 'Nigeria'
+      course.price
+    else
+      ( BigDecimal(course.price) / BigDecimal(560) ).to_f.ceil
+  end
+
+  currency = if @country == 'Nigeria'
+      "₦"
+    else
+      "$"
+  end
+
+  {
+    title: course.title,
+    author: "#{course.user.f_name} #{course.user.l_name}",
+    github: course.repo,
+    price: price,
+    currency: currency,
+    description: course.description,
+    cover: course.poster.url,
+    intro: course.intro.url,
+    is_author: author,
+    purchased: purchased,
+    author_avatar: nil,
+    author_url: course.user.link
+    download_url: nil,
+    lessons: l
+  } 
+

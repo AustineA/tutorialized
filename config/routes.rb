@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     post "users/iforgot", to: "users#iforgot"
     post "users/change-password", to: "users#change_password"
 
+    resources :courses, except: [:show]
+    get "/courses/:slug", to: "courses#show"
+    
     root "courses#index"
   end
 end

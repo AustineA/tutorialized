@@ -1,0 +1,9 @@
+@courses.map do |course|
+  {
+    title: course.title,
+    paid: course.price.positive?,
+    lesson: "#{course.lessons_count} Lessons",
+    image: course.cover.url,
+    url: "/courses/#{course.slug}"
+  }
+end
