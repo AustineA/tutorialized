@@ -10,10 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_21_234854) do
+ActiveRecord::Schema.define(version: 2022_01_22_001044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "courses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title"
+    t.string "repo"
+    t.text "description"
+    t.bigint "price", default: 0
+    t.string "slug"
+    t.string "user_id"
+    t.string "cover"
+    t.string "intro"
+    t.string "poster"
+    t.bigint "lessons_count", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_courses_on_slug"
+    t.index ["user_id"], name: "index_courses_on_user_id"
+  end
+
+  create_table "lessons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "course_id"
+    t.string "user_id"
+    t.string "video"
+    t.string "cover"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_lessons_on_course_id"
+    t.index ["user_id"], name: "index_lessons_on_user_id"
+  end
+
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.string "password_digest"
+    t.string "f_name"
+    t.string "l_name"
+    t.string "link"
+    t.boolean "author", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["username"], name: "index_users_on_username"
+  end
 
 end
