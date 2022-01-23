@@ -1,9 +1,12 @@
 @courses.map do |course|
+  i = if course.cover.attached?
+    polymorphic_url(course.cover.variant(Course.medium_options))
+  end
   {
     title: course.title,
     paid: course.price.positive?,
     lesson: "#{course.lessons_count} Lessons",
-    image: course.cover.url,
+    image: i,
     url: "/courses/#{course.slug}"
   }
 end

@@ -12,6 +12,8 @@ gem "money", "~> 6.9"
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 gem "redis", "~> 4.0"
+gem "sidekiq"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 gem "kredis"
 gem 'jwt'
@@ -20,7 +22,6 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "image_processing", "~> 1.2"
 gem "rack-cors"
-gem "carrierwave"
 gem "fog-aws"
 gem "will_paginate"
 

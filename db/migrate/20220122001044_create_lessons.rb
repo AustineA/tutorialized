@@ -5,8 +5,6 @@ class CreateLessons < ActiveRecord::Migration[7.0]
       t.text :description
       t.string :course_id
       t.string :user_id
-      t.string :video
-      t.string :cover
 
       t.timestamps
     end

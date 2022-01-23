@@ -7,9 +7,6 @@ class CreateCourses < ActiveRecord::Migration[7.0]
       t.bigint :price, :default => 0
       t.string :slug
       t.string :user_id
-      t.string :cover
-      t.string :intro
-      t.string :poster
       t.bigint :lessons_count, :default => 0
 
       t.timestamps

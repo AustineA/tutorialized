@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   include Shared
 
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user, only: [:create, :my_courses]
+  before_action :authenticate_user, only: [:create, :my_courses, :show]
 
   def index
     @courses = Course.all.order(created_at: :desc).limit(6)
@@ -22,6 +22,7 @@ class CoursesController < ApplicationController
   
   def show
     @country = country_by_ip
+    @current_user = current_user
   end
 
   def my_courses

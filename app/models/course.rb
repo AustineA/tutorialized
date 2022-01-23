@@ -1,8 +1,10 @@
 class Course < ApplicationRecord
+  include Variant
   self.implicit_order_column = "created_at"
-  mount_uploader :cover, CoverUploader
-  mount_uploader :intro, IntroUploader
-  mount_uploader :poster, PosterUploader
+
+  has_one_attached :cover
+  has_one_attached :intro
+  has_one_attached :poster
 
 
 
