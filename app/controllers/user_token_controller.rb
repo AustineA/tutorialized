@@ -12,7 +12,7 @@ class UserTokenController < ApplicationController
         user: {
           firstName: user.f_name,
           lastName: user.l_name,
-          auth: user.author,
+          author: user.author,
           link: user.link,
         }
       }, status: :created

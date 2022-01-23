@@ -20,7 +20,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "image_processing", "~> 1.2"
 gem "rack-cors"
-gem "carrierwave", "~> 2.0"
+gem "carrierwave"
 gem "fog-aws"
 gem "will_paginate"
 

@@ -10,7 +10,13 @@ Rails.application.routes.draw do
     post "users/change-password", to: "users#change_password"
 
     resources :courses, except: [:show]
-    get "/courses/:slug", to: "courses#show"
+    scope "/courses" do
+      get "/:slug", to: "courses#show"
+      post "/:slug/lessons", to: "lessons#create"
+      post "/:slug/orders", to: "orders#create"
+    end
+
+    #Orders
     
     root "courses#index"
   end
