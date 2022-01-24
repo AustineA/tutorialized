@@ -13,6 +13,7 @@ gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 gem "redis", "~> 4.0"
 gem "sidekiq"
+gem 'active_storage_validations'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 gem "kredis"

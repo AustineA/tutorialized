@@ -6,9 +6,12 @@ class Course < ApplicationRecord
   has_one_attached :intro
   has_one_attached :poster
 
-
-
   belongs_to :user
   has_many :lessons, dependent: :destroy
   has_many :orders
+
+  validates :price, presence: true
+  validates :title, presence: true
+  validates :cover, attached: true
+  validates :poster, attached: true
 end

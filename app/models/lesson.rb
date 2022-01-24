@@ -9,4 +9,7 @@ class Lesson < ApplicationRecord
   belongs_to :course, :counter_cache => true
   belongs_to :user
 
+  validates :title, presence: true
+  validates :video, attached: true
+  validates :cover, attached: true
 end
