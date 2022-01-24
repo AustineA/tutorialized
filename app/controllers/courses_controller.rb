@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   include Shared
 
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user, only: [:create, :my_courses, :show]
+  before_action :authenticate_user, only: [:create, :my_courses]
 
   def index
     @courses = Course.all.order(created_at: :desc).limit(6)
@@ -46,7 +46,7 @@ class CoursesController < ApplicationController
   private
 
   def set_course
-    @course = Course.find_by_slug(params[:slug])
+      @course = Course.find_by_slug(params[:slug])
   end
 
   def course_params
