@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       post "/:slug/orders", to: "orders#create"
     end
 
-    #Orders
+    get "/orders/verify/:ref", to: "transactions#paystack"
     
     root "courses#index"
   end
