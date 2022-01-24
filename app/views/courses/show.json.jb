@@ -7,24 +7,17 @@
   end
 
   l = @course.lessons.map do |lesson|
-      v = if purchased && lesson.video.attached?
-        polymorphic_url(lesson.video)
-      end
-      lc = if lesson.cover.attached?
-        polymorphic_url(lesson.cover.variant(Lesson.large_options))
-      end
+    v = polymorphic_url(lesson.video) if lesson.video.attached?
+    lc = polymorphic_url(lesson.cover.variant(Lesson.large_options)) if lesson.cover.attached?
+    lt = polymorphic_url(lesson.cover.variant(Lesson.thumbnail_options)) if lesson.cover.attached?
 
-      lt = if lesson.cover.attached?
-        polymorphic_url(lesson.cover.variant(Lesson.thumb_options))
-      end
-
-      {
-        title: lesson.title,
-        video: v,
-        cover: lc,
-        thumbnail: lt,
-        locked: !purchased,
-      }
+    {
+      title: lesson.title,
+      video: v,
+      cover: lc,
+      thumbnail: lt,
+      locked: !purchased,
+    }
   end
 
   price = if @country == 'Nigeria'
