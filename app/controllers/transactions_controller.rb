@@ -9,8 +9,8 @@ class TransactionsController < ApplicationController
     ref = @order.ref_no
 
     response = HTTParty.get("https://api.paystack.co/transaction/verify/#{ref}", 
-                  # headers: { "Authorization"=> "Bearer #{Rails.application.credentials.dig(:paystack, :secret_key)}",
-                  headers: { "Authorization"=> "Bearer #{secret_test_keys}",
+                  headers: { "Authorization"=> "Bearer #{Rails.application.credentials.dig(:paystack, :secret_test_key)}",
+                  # headers: { "Authorization"=> "Bearer #{secret_test_keys}",
                   "content-type" => "application/json"})
 
     paid = response['data']['amount']/100
