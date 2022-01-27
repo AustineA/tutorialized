@@ -8,19 +8,7 @@ class LessonsController < ApplicationController
       @lesson.user = current_user
   
       if @lesson.save
-        v = polymorphic_url(@lesson.video) if @lesson.video.attached?
-        lc = polymorphic_url(@lesson.cover.variant(Lesson.large_options)) if @lesson.cover.attached?
-        lt = polymorphic_url(@lesson.cover.variant(Lesson.thumbnail_options)) if @lesson.cover.attached?
-
-        lesson = {
-          title: @lesson.title,
-          video: v,
-          cover: lc,
-          thumbnail: lt,
-          locked: false
-        }
-        
-        render json: lesson, status: :created
+        render json: :show, status: :created
       else
         render json: @lesson.errors, status: :unprocessable_entity
       end
