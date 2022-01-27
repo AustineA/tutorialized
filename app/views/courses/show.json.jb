@@ -20,18 +20,6 @@
     }
   end
 
-  price = if @country == 'Nigeria'
-      @course.price
-    else
-      ( BigDecimal(@course.price) / BigDecimal(560) ).to_f.ceil
-  end
-
-  currency = if @country == 'Nigeria'
-      "₦"
-    else
-      "$"
-  end
-
   cp = if @course.poster.attached?
     polymorphic_url(@course.poster.variant(Course.large_options))
   end
@@ -44,8 +32,8 @@
     title: @course.title,
     author: "#{@course.user.f_name} #{@course.user.l_name}",
     github: @course.repo,
-    price: price,
-    currency: currency,
+    price: @course.price,
+    currency: "₦",
     description: @course.description,
     cover: cp,
     intro: ci,
